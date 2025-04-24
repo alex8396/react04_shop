@@ -1,4 +1,4 @@
-import { getProductById, getProductsByCategory } from '@/api/productsApi'
+import { getProductById, getProductsByCategory, getProductsData } from '@/api/productsApi'
 
 // 지연 함수 추가
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
@@ -22,8 +22,32 @@ export const detailPageLoader = async info => {
 
     // 상품 ID의 카테고리 정보와 일치하는 상품들
     const relatedProducts = await getProductsByCategory(product.category, 10)
+    const filteredRelatedProducts = relatedProducts.filter(p => p.id !== product.id)
 
-    return { product, relatedProducts }
+    return { product, filteredRelatedProducts }
+  } catch (err) {
+    console.log('err----', err)
+    throw new Response('상품 데이터를 가져오는 중 오류 발생', {
+      status: err.status || 500,
+    })
+  }
+}
+
+export const shopPageLoader = async ({ request }) => {
+  const url = new URL(request.url)
+  const page = url.searchParams.get('_page') || 1
+  const per_page = url.searchParams.get('_per_page') || 12
+  const category = url.searchParams.get('category') || ''
+  const sort = url.searchParams.get('_sort') || ''
+
+  let queryString = `_page=${page}&_per_page=${per_page}`
+  category ? (queryString += `&category=${category}`) : queryString
+  sort ? (queryString += `&_sort=${sort}`) : queryString
+
+  try {
+    const products = await getProductsData(queryString)
+
+    return { products, per_page }
   } catch (err) {
     console.log('err----', err)
     throw new Response('상품 데이터를 가져오는 중 오류 발생', {

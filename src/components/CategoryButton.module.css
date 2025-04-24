@@ -1,0 +1,15 @@
+.btn {
+  width: 100%;
+  transition: 0.3s;
+  border: none;
+  outline: none;
+  padding: var(--fs8) var(--fs16);
+  border-radius: var(--fs8);
+  text-align: left;
+  background-color: var(--dark-colors-white-dark);
+}
+.btn:hover,
+.btn.active {
+  background-color: var(--dark-colors-accent-dark);
+  color: var(--dark-colors-white-dark);
+}

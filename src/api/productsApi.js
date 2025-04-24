@@ -5,7 +5,7 @@ import axios from 'axios'
 export const getProductsData = async (query = '') => {
   try {
     const res = await axios.get(`/api/products/?${query}`)
-    console.log('productApi.js : getProductsData', res)
+    // console.log('productApi.js : getProductsData', res)
     return res.data
   } catch (err) {
     console.log('productApi.js : getProductsData -err', err)

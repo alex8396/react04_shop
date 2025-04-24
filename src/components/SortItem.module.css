@@ -1,0 +1,9 @@
+.list {
+  border-bottom: 1px dotted var(--dark-colors-gray-dark);
+  padding: var(--fs8);
+  cursor: pointer;
+}
+.list.active {
+  background-color: var(--dark-colors-light-gray-dark);
+  color: var(--dark-colors-white-dark);
+}

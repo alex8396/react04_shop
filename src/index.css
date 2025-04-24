@@ -22,6 +22,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html,
+body {
+  /* scroll-behavior: auto !important; */
+}
 :root {
   font-family: 'Noto Sans KR', sans-serif;
   font-optical-sizing: auto;
@@ -71,6 +76,7 @@ footer {
 main h2 {
   font-size: var(--fs33);
   color: var(--dark-colors-accent-dark);
+  margin-bottom: var(--fs33);
 }
 
 a {
