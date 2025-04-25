@@ -1004,27 +1004,36 @@
   "banners": [
     {
       "id": "1",
-      "img": "/public/img/Img_bg1.jpg",
+      "img": "/img/Img_bg1.jpg",
       "title": "이벤트 제목1",
       "description": "1배너 리스트 영역의 배너 상세 내용이 들어갑니다.",
       "link": "/shop"
     },
     {
       "id": "2",
-      "img": "/public/img/Img_bg2.jpg",
+      "img": "/img/Img_bg2.jpg",
       "title": "이벤트 제목2",
       "description": "22배너 리스트 영역의 배너 상세 내용이 들어갑니다.",
       "link": "/shop"
     },
     {
       "id": "3",
-      "img": "/public/img/Img_bg3.jpg",
+      "img": "/img/Img_bg3.jpg",
       "title": "이벤트 제목2",
       "description": "333배너 리스트 영역의 배너 상세 내용이 들어갑니다.",
       "link": "/shop"
     }
   ],
   "cart": [
+    {
+      "id": "1",
+      "title": "14K/18K 허니 벌집2 헥사곤 심플 반지",
+      "img": "image1.jpg",
+      "price": 185000,
+      "category": "new",
+      "discount": 5,
+      "count": 3
+    },
     {
       "id": "8",
       "title": "진주 헤어핀 스타일링 5종 연예인 스타일 옆머리 고정삔 5종",
@@ -1051,15 +1060,20 @@
       "category": "new",
       "discount": 0,
       "count": 1
+    }
+  ],
+  "todos": [
+    {
+      "id": 1,
+      "todosDesc": "할일 내용이 입력되는 곳",
+      "createAt": "2025.04.24",
+      "isDone": false
     },
     {
-      "id": "2",
-      "title": "14K/18K 심플 진주 반지",
-      "img": "image10.jpg",
-      "price": 147445,
-      "category": "new",
-      "discount": 46,
-      "count": 1
+      "id": 2,
+      "todosDesc": "할일 내용이 입력되는 곳",
+      "createAt": "2025.04.24",
+      "isDone": false
     }
   ]
 }

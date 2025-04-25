@@ -1,11 +1,10 @@
 import axios from 'axios'
 // const BASE_URL = 'http://localhost:3000/products'
-// 프록시 설정을 했기 때문에 /api/products로 시작하는 url을 사용합니다.
 
 export const getProductsData = async (query = '') => {
   try {
     const res = await axios.get(`/api/products/?${query}`)
-    // console.log('productApi.js : getProductsData', res)
+    //console.log('productApi.js : getProductsData', res)
     return res.data
   } catch (err) {
     console.log('productApi.js : getProductsData -err', err)

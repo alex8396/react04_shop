@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import css from './LatestList.module.css'
 import ProductCard from '../components/ProductCard'
+import ProductCardSkeleton from '../components/ProductCardSkeleton'
 import { getProductsData } from '../api/productsApi'
-import ProductCardSkeleton from '@/components/ProductCardSkeleton'
-
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const LatestList = () => {
@@ -16,9 +15,9 @@ const LatestList = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true)
-        await delay(30)
+        await delay(3000)
         const data = await getProductsData(`category=new&_limit=${pCount}`)
-        console.log('data----', data)
+        //console.log('data----', data)
 
         setProducts(data)
         setLoading(false)

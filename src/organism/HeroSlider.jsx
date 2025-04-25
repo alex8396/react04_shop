@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Link } from 'react-router-dom'
+
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import { getBannerData } from '../api/bannerApi'
 
@@ -13,19 +14,25 @@ const HeroSlider = () => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    // 배너 데이터를 가져오기 전에 미리 첫 번째 이미지 프리로드
+    const preloadFirstImage = () => {
+      const img = new Image()
+      img.src = '/public/vite.svg' // 첫 번째 이미지 경로를 알고 있다면 직접 지정
+    }
+
+    preloadFirstImage()
+
     const fetchBanner = async () => {
       try {
         setLoading(true)
         const data = await getBannerData()
 
-        // 스켈레톤 효과를 주기 위해 3초 대기
-        // 실제 서비스에서는 사용하지 않음
-        await delay(300)
+        await delay(3000) // 1초 지연
 
         setBanner(data)
         setLoading(false)
       } catch (err) {
-        console.log(err)
+        console.log('err----', err)
         setLoading(false)
       }
     }

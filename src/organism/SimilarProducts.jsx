@@ -3,8 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination } from 'swiper/modules'
 import css from './SimilarProducts.module.css'
 import ProductCard from '@/components/ProductCard'
-const SimilarProducts = ({ relatedProducts }) => {
-  console.log('SimilarProducts ---', relatedProducts)
+const SimilarProducts = ({ filteredRelatedProducts }) => {
+  console.log('SimilarProducts ---', filteredRelatedProducts)
 
   return (
     <div className={css.container}>
@@ -28,7 +28,7 @@ const SimilarProducts = ({ relatedProducts }) => {
         modules={[Pagination]}
         className={css.similarSlider}
       >
-        {relatedProducts.map(product => (
+        {filteredRelatedProducts.map(product => (
           <SwiperSlide key={product.id}>
             <ProductCard data={product} />
           </SwiperSlide>

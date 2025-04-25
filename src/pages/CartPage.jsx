@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useLoaderData } from 'react-router-dom'
 import css from './CartPage.module.css'
-import { formmatCurrency } from '@/utils/features'
-import { updateCartItemCount, removeFromCart } from '@/api/cartApi'
+import { formatCurrency } from '../utils/features'
+import { removeFromCart, updateCartItem } from '@/api/cartApi'
 
 const CartPage = () => {
   const cartList = useLoaderData()
@@ -18,20 +18,13 @@ const CartPage = () => {
   )
 
   const increase = id => {
-    // 아이템이 없으면 일찍 함수 종료
-    const cuurentItem = items.find(item => item.id === id)
-    if (!cuurentItem) return
-
     setItems(prev => prev.map(item => (item.id === id ? { ...item, count: item.count + 1 } : item)))
+
     const newCount = items.find(item => item.id === id).count + 1
-    // cartApi에 업데이트 요청
-    updateCartItemCount(id, newCount).catch(err => console.log('err', err)) // 에러처리 추가;
+    updateCartItem(id, newCount).catch(err => console.log('err', err))
   }
 
   const decrease = id => {
-    const cuurentItem = items.find(item => item.id === id)
-    if (!cuurentItem) return
-
     setItems(prev =>
       prev.map(item =>
         item.id === id && item.count > 1 ? { ...item, count: item.count - 1 } : item
@@ -39,23 +32,23 @@ const CartPage = () => {
     )
     const newCount = items.find(item => item.id === id).count - 1
     if (newCount >= 1) {
-      updateCartItemCount(id, newCount).catch(err => console.log('err', err))
+      updateCartItem(id, newCount)
     }
   }
 
-  const hadleDelete = id => {
+  const handleDelete = id => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
       setItems(prev => prev.filter(item => item.id !== id))
-      removeFromCart(id).catch(err => console.log('err', err))
+      removeFromCart(id)
     }
   }
 
   return (
     <main>
-      <h2>Shopping cart</h2>
+      <h2>장바구니</h2>
       {items.length > 0 && (
         <p>
-          장바구니 리스트는 <strong>{items.length}</strong> 개이고, 총 상품 갯수는{' '}
+          장바구니 리스트는 <strong>{items.length}</strong>개이고, 총 상품 갯수는{' '}
           <strong>{totalCount}</strong>개 입니다.
         </p>
       )}
@@ -66,12 +59,12 @@ const CartPage = () => {
         <>
           <ul className={css.cartList}>
             {items.map(item => (
-              <li className={css.cartItem} key={item.id}>
+              <li key={item.id} className={css.cartItem}>
                 <div className={css.cartImg}>
-                  <img src={`/public/img/${item.img}`} alt={item.title} />
+                  <img src={`/public/img/${item.img}`} alt={item.title}></img>
                 </div>
                 <div className={css.title}>{item.title}</div>
-                <div className={css.price}>{formmatCurrency(item.price)}</div>
+                <div className={css.price}>{formatCurrency(item.price)}</div>
                 <div className={css.btnArea}>
                   <button
                     onClick={() => {
@@ -89,20 +82,21 @@ const CartPage = () => {
                     +
                   </button>
                 </div>
-                <div className={css.sum}>{formmatCurrency(item.price * item.count)}</div>
+                <div className={css.sum}>{formatCurrency(item.price * item.count)}</div>
                 <div
                   className={css.deleteBtn}
                   onClick={() => {
-                    hadleDelete(item.id)
+                    handleDelete(item.id)
                   }}
                 >
-                  <i className="bi bi-trash3"></i>
+                  <i className="bi bi-trash3-fill"></i>
                 </div>
               </li>
             ))}
           </ul>
+
           <div className={css.totalPrice}>
-            총금액 : <strong>{formmatCurrency(totalSum)}</strong>
+            총 금액 <strong>{totalSum}</strong>
           </div>
         </>
       )}

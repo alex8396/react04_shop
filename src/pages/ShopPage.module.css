@@ -1,96 +1,127 @@
 .shopPage {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--fs33);
-}
-
-.shopPage h2 {
-  width: 100%;
-  margin-bottom: 0;
-}
-.searchFn {
-  width: 130px;
-}
-.category {
-  display: flex;
-  flex-direction: column;
-  gap: var(--fs8);
-}
-
-.sort {
-  margin: var(--fs33) 0;
-  font-size: var(--fs12);
-  position: relative;
-}
-.sortHeader {
-  background-color: var(--dark-colors-white-dark);
-  padding: var(--fs12);
-  border-radius: var(--fs8);
-  position: relative;
-}
-.sortHeader i {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: var(--fs12);
-}
-.sort ul {
-  position: absolute;
-  max-height: 0;
-  width: 100%;
-  overflow: hidden;
-  transition: 0.3s;
-  background: var(--dark-colors-white-dark);
-  margin-top: var(--fs8);
-  z-index: 10;
-  border-radius: var(--fs8);
-}
-
-/* .sort.active .sortHeader i {
-  transform: translateY(-50%) rotate(180deg);
-} */
-.sort.active ul {
-  max-height: 190px;
-}
-
-.productList {
-  flex: 1;
-}
-.list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: var(--fs26);
-}
-
-@media (max-width: 1100px) {
-  .searchFn {
-    width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--fs33);
+  }
+
+  .shopPage h2 {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .searchFn {
+    width: 130px;
   }
   .category {
-    flex-direction: row;
-  }
-  .category button {
-    width: auto;
-  }
-
-  .sort {
-    width: 120px;
-    margin: var(--fs8) 0;
-  }
-}
-@media (max-width: 600px) {
-  .searchFn {
+    display: flex;
     flex-direction: column;
     gap: var(--fs8);
   }
-  .category {
+  .category button {
     width: 100%;
-    flex-direction: column;
+    transition: 0.3s;
+    border: none;
+    outline: none;
+    padding: var(--fs8) var(--fs16);
+    border-radius: var(--fs8);
+    text-align: left;
+  }
+  .category button:hover,
+  .category button.active {
+    background-color: var(--dark-colors-accent-dark);
+    color: var(--dark-colors-white-dark);
   }
   .sort {
-    width: 100%;
+    margin: var(--fs33) 0;
+    font-size: var(--fs12);
+    position: relative;
   }
-}
+  .sortHeader {
+    background-color: var(--dark-colors-white-dark);
+    padding: var(--fs12);
+    border-radius: var(--fs8);
+    position: relative;
+  }
+  .sortHeader i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: var(--fs12);
+  }
+  .sort ul {
+    position: absolute;
+    max-height: 0;
+    width: 100%;
+    overflow: hidden;
+    transition: 0.3s;
+    background: var(--dark-colors-white-dark);
+    margin-top: var(--fs8);
+    z-index: 10;
+    border-radius: var(--fs8);
+  }
+  .sortHeader > p {
+    text-align: center;
+    justify-content: center;
+    margin: 0;
+  }
+  .sort ul > li {
+    border-bottom: 1px dotted var(--dark-colors-gray-dark);
+    padding: var(--fs8);
+    cursor: pointer;
+    text-align: center;
+  }
+  .sort ul > li.active {
+    background-color: var(--dark-colors-light-gray-dark);
+    color: var(--dark-colors-white-dark);
+  }
+  
+  /* .sort.active .sortHeader i {
+    transform: translateY(-50%) rotate(180deg);
+  } */
+  .sort.active ul {
+    max-height: 190px;
+  }
+  
+  .productList {
+    flex: 1;
+  }
+  .list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--fs26);
+  }
+  .list > li {
+    /* height: 300px; */
+  }
+  
+  @media (max-width: 1100px) {
+    .searchFn {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .category {
+      flex-direction: row;
+    }
+    .category button {
+      width: auto;
+    }
+  
+    .sort {
+      width: 120px;
+      margin: var(--fs8) 0;
+    }
+  }
+  @media (max-width: 600px) {
+    .searchFn {
+      flex-direction: column;
+      gap: var(--fs8);
+    }
+    .category {
+      width: 100%;
+      flex-direction: column;
+    }
+    .sort {
+      width: 100%;
+    }
+  }

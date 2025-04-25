@@ -34,18 +34,22 @@ export const detailPageLoader = async info => {
 }
 
 export const shopPageLoader = async ({ request }) => {
+  // console.log('productsLoaders.js:info', request.url)
   const url = new URL(request.url)
   const page = url.searchParams.get('_page') || 1
   const per_page = url.searchParams.get('_per_page') || 12
   const category = url.searchParams.get('category') || ''
   const sort = url.searchParams.get('_sort') || ''
-
+  // const per_page = 12
   let queryString = `_page=${page}&_per_page=${per_page}`
   category ? (queryString += `&category=${category}`) : queryString
   sort ? (queryString += `&_sort=${sort}`) : queryString
 
+  console.log('-----------------', queryString)
+
   try {
     const products = await getProductsData(queryString)
+    console.log('productsLoaders.js:products ----- ', products)
 
     return { products, per_page }
   } catch (err) {

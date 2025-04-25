@@ -23,26 +23,88 @@
   border-radius: var(--fs16);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   position: relative;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  max-width: 40%;
 }
-
 .modal.active .container {
   transform: translateY(0px);
   opacity: 1;
 }
-
+.modal .imgWrap{
+  width: calc(50% - var(--fs16));
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: var(--fs16);
+  overflow: hidden;
+}
 .modal img {
-  width: 100px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
 }
 
 .btnClose {
   position: absolute;
   right: 0;
-  top: -50px;
+  top: -35px;
   border: none;
   outline: none;
   background-color: transparent;
-  font-size: var(--fs33);
+  font-size: var(--fs26);
 }
 .btnClose:hover i {
-  color: var(--dark-colors-white-dark);
+    color: var(--dark-colors-white-dark);
+}
+
+._inner{
+  display: flex;
+  flex-direction: column;
+  gap: var(--fs8);
+}
+._inner h2, p{
+  font-weight: bold;
+  margin-bottom: var(--fs8);
+}
+
+.info{
+  display: flex;
+  gap: var(--fs16);
+}
+
+.cartText{
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cartText > * {
+  margin-bottom: var(--fs16);
+}
+
+.btnCon{
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--fs8);
+}
+
+.btnCon :nth-child(1) {
+  border-radius: var(--fs8);
+  background-color: inherit;
+  border: 2px solid var(--dark-colors-accent-dark);
+  padding: 6px;
+  font-weight: bold;
+}
+.btnCon :nth-child(1):hover {
+  background-color: var(--light-colors-gray-light);
+}
+.btnCon :nth-child(2) {
+  border-radius: var(--fs8);
+  background-color: inherit;
+  padding: var(--fs8);
+  font-weight: bold;
+  border: 2px solid var(--dark-colors-accent-dark);
+}
+.btnCon :nth-child(2):hover {
+  background-color: var(--light-colors-gray-light);
 }

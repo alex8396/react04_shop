@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useLoaderData } from 'react-router-dom'
 import css from './DetailPage.module.css'
-import { formmatCurrency } from '@/utils/features'
+import { formatCurrency } from '@/utils/features'
 import DetailTabInfo from '@/organism/DetailTabInfo'
 import SimilarProducts from '@/organism/SimilarProducts'
 import Modal from '@/components/Modal'
@@ -9,8 +9,8 @@ import Modal from '@/components/Modal'
 const DetailPage = () => {
   const { product, filteredRelatedProducts } = useLoaderData()
   console.log('DetailPage:product', product)
-  console.log('DetailPage:filteredRelatedProducts', filteredRelatedProducts)
-
+  console.log('DetailPage:relatedProducts', filteredRelatedProducts)
+  
   const [isLoading, setIsLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [count, setCount] = useState(1)
@@ -40,19 +40,21 @@ const DetailPage = () => {
     )
   }
 
-  const decrease = () => {
-    setCount(prev => (prev > 1 ? prev - 1 : 1))
+  const decrease = () =>{
+    setCount(prev => prev > 1 ? prev - 1 : 1)
   }
-  const increase = () => {
+  const increase = () =>{
     setCount(prev => prev + 1)
   }
 
-  const handleAddToCart = () => {
+  const handleAddToCart =() => {
     setIsModalOpen(true)
   }
+  
   const closeModal = () => {
     setIsModalOpen(false)
   }
+
   return (
     <main>
       <h2>DetailPage</h2>
@@ -64,7 +66,7 @@ const DetailPage = () => {
         </div>
         <div className={css.infoWrap}>
           <p className={css.title}>{product.title}</p>
-          <p className={css.price}>{formmatCurrency(product.price)}</p>
+          <p className={css.price}>{formatCurrency(product.price)}</p>
           <p className={css.category}>{product.category}</p>
           <div className={css.btnWrap}>
             <div className={css.counterArea}>
@@ -72,15 +74,13 @@ const DetailPage = () => {
               <span>{count}</span>
               <button onClick={increase}>+</button>
             </div>
-            <button className={css.addBtn} onClick={handleAddToCart}>
-              장바구니 담기
-            </button>
+            <button className={css.addBtn} onClick={handleAddToCart}>장바구니 담기</button>
           </div>
         </div>
       </div>
       <DetailTabInfo />
-      <SimilarProducts relatedProducts={filteredRelatedProducts} />
-      {isModalOpen && <Modal product={product} count={count} onClose={closeModal} />}
+      <SimilarProducts filteredRelatedProducts={filteredRelatedProducts} />
+      {isModalOpen && <Modal product={product} count={count} onClose={closeModal}/>}
     </main>
   )
 }
